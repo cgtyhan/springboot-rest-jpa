@@ -10,4 +10,6 @@ import java.util.List;
 public interface WorkerService {
     List<Worker> listAllWorkers();
     Worker getWorkerById(int id);
+    Worker addWorker(Worker worker);
+    void deleteEmployeeById(int id);
 }

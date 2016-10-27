@@ -23,6 +23,16 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public Department getDepartmentById(int id) {
-        return (Department) departmentRepository.findOne(id);
+        return departmentRepository.findOne(id);
+    }
+
+    @Override
+    public Department addDepartment(Department department) {
+        return departmentRepository.save(department);
+    }
+
+    @Override
+    public void deleteDepartmentById(int id) {
+        departmentRepository.delete(getDepartmentById(id));
     }
 }

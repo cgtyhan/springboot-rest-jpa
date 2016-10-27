@@ -3,9 +3,7 @@ package com.cagatayhan.controller;
 import com.cagatayhan.domain.Worker;
 import com.cagatayhan.service.WorkerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,13 +16,23 @@ public class WorkerController {
     @Autowired
     WorkerService workerService;
 
-    @RequestMapping("/all")
+    @RequestMapping(value = "/all")
     public List<Worker> listAllWorkers() {
         return workerService.listAllWorkers();
     }
 
-    @RequestMapping("{id}")
+    @RequestMapping(value = "{id}")
     public Worker getWorkerById(@PathVariable("id") int id) {
         return workerService.getWorkerById(id);
+    }
+
+    @RequestMapping(value = "/add", produces = "application/json", method = RequestMethod.POST)
+    public Worker addWorker(@RequestBody Worker worker) {
+        return workerService.addWorker(worker);
+    }
+
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
+    public void deleteWorkerById(@PathVariable("id") int id) {
+        workerService.deleteEmployeeById(id);
     }
 }

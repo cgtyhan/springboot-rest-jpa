@@ -1,6 +1,8 @@
 package com.cagatayhan.service;
 
+import com.cagatayhan.domain.Department;
 import com.cagatayhan.domain.Employee;
+import com.cagatayhan.domain.Manager;
 
 import java.util.List;
 
@@ -10,4 +12,6 @@ import java.util.List;
 public interface EmployeeService {
     List<Employee> listAllEmployees();
     Employee getEmployeeById(int id);
+    Employee addEmployee(Employee employee);
+    void deleteEmployeeById(int id);
 }

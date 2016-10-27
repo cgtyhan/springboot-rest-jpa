@@ -5,9 +5,7 @@ import com.cagatayhan.domain.Manager;
 import com.cagatayhan.service.DepartmentService;
 import com.cagatayhan.service.ManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,13 +18,23 @@ public class DepartmentController {
     @Autowired
     DepartmentService departmentService;
 
-    @RequestMapping("/all")
+    @RequestMapping(value = "/all")
     public List<Department> listAllDepartments() {
         return departmentService.listAllDepartments();
     }
 
-    @RequestMapping("{id}")
+    @RequestMapping(value = "{id}")
     public Department getDepartmentById(@PathVariable("id") int id) {
         return departmentService.getDepartmentById(id);
+    }
+
+    @RequestMapping(value = "/add", produces = {"application/json"}, method = RequestMethod.POST)
+    public Department addDepartment(@RequestBody Department department) {
+        return departmentService.addDepartment(department);
+    }
+
+    @RequestMapping(value = "delete/{id}", method = RequestMethod.DELETE)
+    public void deleteDepartmentById(@PathVariable("id") int id) {
+        departmentService.deleteDepartmentById(id);
     }
 }

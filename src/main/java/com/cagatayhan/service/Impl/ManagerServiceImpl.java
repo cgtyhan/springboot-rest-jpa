@@ -23,6 +23,16 @@ public class ManagerServiceImpl implements ManagerService {
 
     @Override
     public Manager getManagerById(int id) {
-        return (Manager) managerRepository.findOne(id);
+        return managerRepository.findOne(id);
+    }
+
+    @Override
+    public Manager addManager(Manager manager) {
+        return managerRepository.save(manager);
+    }
+
+    @Override
+    public void deleteManagerById(int id) {
+        managerRepository.delete(getManagerById(id));
     }
 }

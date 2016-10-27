@@ -23,6 +23,17 @@ public class WorkerServiceImpl implements WorkerService{
 
     @Override
     public Worker getWorkerById(int id) {
-        return (Worker) workerRepository.findOne(id);
+        return workerRepository.findOne(id);
     }
+
+    @Override
+    public Worker addWorker(Worker worker) {
+        return workerRepository.save(worker);
+    }
+
+    @Override
+    public void deleteEmployeeById(int id) {
+        workerRepository.delete(getWorkerById(id));
+    }
+
 }
